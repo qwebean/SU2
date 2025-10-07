@@ -553,10 +553,9 @@ bool CMultizoneDriver::TransferData(unsigned short donorZone, unsigned short tar
       BroadcastData(FLOW_SOL, FLOW_SOL);
 
       /*--- Additional transfer for turbulence variables. ---*/
-      if (config_container[targetZone]->GetKind_Solver() == MAIN_SOLVER::RANS ||
-          config_container[targetZone]->GetKind_Solver() == MAIN_SOLVER::INC_RANS) {
-        BroadcastData(TURB_SOL, TURB_SOL);
-      }
+      if (config_container[targetZone]->GetKind_Turb_Model() != TURB_MODEL::NONE) {
+        BroadcastData(TURB_SOL,TURB_SOL);
+      }   
 
       /*--- Additional transfer for species variables. ---*/
       if (config_container[targetZone]->GetKind_Species_Model() != SPECIES_MODEL::NONE) {
