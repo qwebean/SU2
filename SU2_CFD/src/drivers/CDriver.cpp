@@ -3037,9 +3037,9 @@ void CFluidDriver::TransferData(unsigned short donorZone, unsigned short targetZ
   };
   BroadcastData(FLOW_SOL);
 
-  if (config_container[targetZone]->GetKind_Solver() == MAIN_SOLVER::RANS) {
+  if (config_container[targetZone]->GetKind_Turb_Model() != TURB_MODEL::NONE) {
     BroadcastData(TURB_SOL);
-  }
+  }  
   if (config_container[targetZone]->GetKind_Species_Model() != SPECIES_MODEL::NONE) {
     BroadcastData(SPECIES_SOL);
   }
